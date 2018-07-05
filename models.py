@@ -10,7 +10,7 @@ class DeepPacketCNN(nn.Module):
         self.bn1 = nn.BatchNorm1d(200)
         self.relu = nn.ReLU(inplace=True)
 
-        self.conv2 = nn.Conv1d(1, 100, 4, 1, 0)
+        self.conv2 = nn.Conv1d(200, 100, 4, 1, 0)
         self.bn2 = nn.BatchNorm1d(100)
 
         self.pool = nn.AvgPool1d(2)
@@ -79,7 +79,7 @@ class AutoEncoder(nn.Module):
                                           nn.ReLU(True)
                                           )
 
-        self.backward_pass = nn.Linear(input_size, output_size)
+        self.backward_pass = nn.Linear(output_size, input_size)
 
         self.criterion = nn.MSELoss()
         self.optimizer = torch.optim.SGD(self.parameters(), lr=0.1)
